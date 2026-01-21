@@ -1,9 +1,8 @@
 import { Platform } from 'react-native';
 
-// For Android Emulator, localhost is 10.0.2.2.
-// For iOS Simulator, it is localhost.
-// For Web, it is localhost.
-const BASE_URL = Platform.OS === 'android' ? 'http://10.0.2.2:8080' : 'http://127.0.0.1:8080';
+// Use environment variable for BASE_URL
+// Expo automatically injects variables prefixed with EXPO_PUBLIC_
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL || (Platform.OS === 'android' ? 'http://10.0.2.2:8080' : 'http://127.0.0.1:8080');
 
 export interface User {
     username: string;

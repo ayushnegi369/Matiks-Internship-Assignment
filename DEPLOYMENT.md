@@ -1,35 +1,21 @@
-# 🚀 Deployment Guide: Matiks Leaderboard Platform
+## 🌍 Centralized Configuration
 
-This guide covers the process of moving your application from local development to a production environment.
+You can now manage all public URLs and ports from the single **`.env`** file in the project root.
+
+### Environment Variables
+- `PORT`: Local port for the Go server (default: 8080).
+- `FRONTEND_URL`: Used by the backend to allow CORS from your frontend domain.
+- `EXPO_PUBLIC_API_URL`: Used by the Expo app to connect to the backend.
+
+> [!TIP]
+> **For Local Dev**: The backend automatically looks for the root `.env` file. For the frontend, I've added a copy of this file to `frontend/.env` so Expo can pick it up.
 
 ---
 
 ## 🎨 Part 1: Frontend Deployment (Vercel)
-
-Vercel is the recommended platform for the Expo web frontend.
-
-### 1. Prepare your Expo Web Build
-First, ensure your web build is export-ready:
-```bash
-cd frontend
-npx expo export:web
-```
-
-### 2. Connect to GitHub
-- Log into [Vercel](https://vercel.com).
-- Click **"New Project"**.
-- Select your repository: `Matiks-Internship-Assignment`.
-
-### 3. Configure Framework & Build
-In the Vercel project settings:
-- **Framework Preset**: Other (or Expo)
-- **Build Command**: `cd frontend && npm install && npx expo export:web`
-- **Output Directory**: `frontend/web-build`
-- **Root Directory**: `./`
-
+...
 ### 4. Environment Variables
-Add an Environment Variable named `EXPO_PUBLIC_API_URL` and set it to your deployed backend URL.
-> **Note**: If you haven't deployed the backend yet, you can skip this and update it later.
+Add your `EXPO_PUBLIC_API_URL` directly in the Vercel Dashboard.
 
 ---
 

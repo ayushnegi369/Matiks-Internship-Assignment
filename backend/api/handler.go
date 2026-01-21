@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"matiks-leaderboard/core"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -80,7 +81,11 @@ func HandleSimulate(w http.ResponseWriter, r *http.Request) {
 }
 
 func enableCors(w *http.ResponseWriter) {
-	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	frontendURL := os.Getenv("FRONTEND_URL")
+	if frontendURL == "" {
+		frontendURL = "*"
+	}
+	(*w).Header().Set("Access-Control-Allow-Origin", frontendURL)
 	(*w).Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PATCH, DELETE")
 	(*w).Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token")
 }

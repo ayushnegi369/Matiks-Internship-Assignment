@@ -6,9 +6,16 @@ import (
 	"matiks-leaderboard/api"
 	"matiks-leaderboard/core"
 	"net/http"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// 0. Load environment variables from root .env if it exists
+	// We look one level up since we run from /backend
+	_ = godotenv.Load("../.env")
+
 	// 1. Initialize Leaderboard
 	api.Board = core.NewLeaderboard()
 
@@ -23,7 +30,11 @@ func main() {
 	http.HandleFunc("/simulate", api.HandleSimulate)
 
 	// 4. Start Server
-	port := ":8080"
+	rawPort := os.Getenv("PORT")
+	if rawPort == "" {
+		rawPort = "8080"
+	}
+	port := ":" + rawPort
 	fmt.Println("Server starting on port " + port)
 	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal(err)
