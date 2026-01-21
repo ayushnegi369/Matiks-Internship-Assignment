@@ -1,0 +1,45 @@
+import { Platform } from 'react-native';
+
+// For Android Emulator, localhost is 10.0.2.2.
+// For iOS Simulator, it is localhost.
+// For Web, it is localhost.
+const BASE_URL = Platform.OS === 'android' ? 'http://10.0.2.2:8080' : 'http://127.0.0.1:8080';
+
+export interface User {
+    username: string;
+    rating: number;
+    rank: number;
+}
+
+export const fetchLeaderboard = async (limit = 50): Promise<User[]> => {
+    try {
+        const response = await fetch(`${BASE_URL}/leaderboard?limit=${limit}`);
+        if (!response.ok) throw new Error("Failed to fetch leaderboard");
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+};
+
+export const searchUsers = async (query: string): Promise<User[]> => {
+    try {
+        if (!query) return [];
+        const response = await fetch(`${BASE_URL}/search?q=${encodeURIComponent(query)}`);
+        if (!response.ok) throw new Error("Failed to search users");
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+};
+export const simulateTraffic = async (): Promise<any> => {
+    try {
+        const response = await fetch(`${BASE_URL}/simulate`);
+        if (!response.ok) throw new Error("Failed to simulate traffic");
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return { message: "Error simulating traffic" };
+    }
+};
