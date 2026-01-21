@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+dist/
+web-build/
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Expo
+.expo/
+expo-env.d.ts
+
+# Go
+backend/backend
+# If you build the go binary specifically, ignore it
+main
+*.test
+
+# Environment variables (Sensitive)
+.env
+.env.local
+.env.*.local
+frontend/.env
+
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# TypeScript
+*.tsbuildinfo
