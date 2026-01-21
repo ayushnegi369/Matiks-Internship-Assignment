@@ -93,4 +93,10 @@ func getRank(score int) int {
 This ensures that fetching the leaderboard or checking a user's rank remains incredibly fast even as the user count scales exponentially.
 
 ---
+## 🌐 Live Deployment
+
+- **Frontend (UI)**: [https://matiks-project-frontend.vercel.app/](https://matiks-project-frontend.vercel.app/)
+- **Backend (API)**: [https://matiks-project-backend.onrender.com](https://matiks-project-backend.onrender.com)
+
+---
 **Developed for Matiks Assignment**
